@@ -5,7 +5,6 @@ import src.styles.imagens as imagem
 import src.styles.color as color
 import src.back.mechanics as mech
 
-print("tnc")
 #Inicializar
 #Config básicas do pygame
 pg.init()  # Sempre começa o game aqui
