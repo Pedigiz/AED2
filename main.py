@@ -8,16 +8,6 @@ import src.pages.mochila as mochila
 
 import src.pages.game as game
 
-from sys import exit
-from pygame.locals import *
-
-import src.back.mechanics as mech
-
-pg.init()
-
-screen = pg.display.set_mode((mech.altura, mech.largura))
-pg.display.set_caption('POKEMON FIRE/RED DEEPWEB')
-
 def main():
     cena_atual = 'menu'
 
