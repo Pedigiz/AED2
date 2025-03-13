@@ -62,4 +62,4 @@ def verificaMouse():
     print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
 
 def popUp():
-    
+    None
