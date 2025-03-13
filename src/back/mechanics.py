@@ -1,9 +1,4 @@
 import pygame as pg
-import sys
-from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parents[2]))  # Ajuste o número de parents conforme necessário
-
-import src.back.estruturas as estruturas
 
 #Tamanho da tela
 altura, largura = 800, 600
@@ -28,6 +23,17 @@ x_player = altura / 2
 y_player = largura / 2
 PosicaoJogador = pg.Vector2(x_player, y_player)
 
+
+# X : Y Valores de onde estarao os "ginasios"
+valores_ginasios = {
+                    "Ginasio 1" : (1092,196),
+                    "Ginasio 2" : (557,235),
+                    "Ginasio 3" : (1126,365),
+                    "Ginasio 4" : (492,453),
+                    "Ginasio 5" : (608,761)
+                }
+
+
 #Movimentação do personagem
 def movimentarJogador(keys):
     global x_player, y_player, camera_x, camera_y   #Deu mó BO sem isso
@@ -49,31 +55,11 @@ def proximoDoObjeto(x_jogador, y_jogador, x_objeto, y_objeto, raio2):
     distancia = ((x_jogador - x_objeto) ** 2 + (y_jogador - y_objeto) ** 2) ** 0.5
     return distancia <= raio2 # ´Só vai retornar se isso for verdade
         
-#Verificacao de Onde o mouse esta sendo clicado
-
+#Verificacao de Onde o mouse esta sendo clicado para poder inserir os pokemons mais facilmente
 def verificaMouse():
     mouse_pos = pg.mouse.get_pos()
     mouse_pos_mundo = pg.Vector2(mouse_pos[0] + camera_x, mouse_pos[1] + camera_y)
     print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
+
+def popUp():
     
-    '''
-    for ginasio in estruturas.ginasios:
-        if (ginasio["pos"].x <= mouse_pos_mundo.x <= ginasio["pos"].x + ginasio["tamanho"].x and
-            ginasio["pos"].y <= mouse_pos_mundo.y <= ginasio["pos"].y + ginasio["tamanho"].y):
-            print(f"Ginásio em {ginasio['pos']} clicado!")
-
-    for pokemon in estruturas.pokemons:
-        if (pokemon["pos"].x <= mouse_pos_mundo.x <= pokemon["pos"].x + pokemon["tamanho"].x and
-            pokemon["pos"].y <= mouse_pos_mundo.y <= pokemon["pos"].y + pokemon["tamanho"].y):
-            print(f"Pokemon em {pokemon['pos']} clicado!")
-
-
-def insereBotoes(screen):
-    for ginasio in estruturas.ginasios:
-        botao_pos_tela = (ginasio["pos"] - PosicaoJogador) * 2 + camera_centro
-        screen.blit(ginasio["imagem"], (botao_pos_tela.x, botao_pos_tela.y))
-    
-    for pokemon in estruturas.pokemons:
-        botao_pos_tela = (pokemon["pos"] - PosicaoJogador) * 2 + camera_centro
-        screen.blit(pokemon["imagem"], (botao_pos_tela.x, botao_pos_tela.y))
-'''
