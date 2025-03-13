@@ -1,41 +1,53 @@
-import pygame as pg
+import os
 import sys
+import pygame as pg
 
-import src.styles.imagens as imagem
-import src.styles.color as color
+import src.pages.menu as menu
+
+import src.pages.mochila as mochila
+
+import src.pages.game as game
+
+from sys import exit
+from pygame.locals import *
+
 import src.back.mechanics as mech
 
-#Inicializar
-#Config básicas do pygame
-pg.init()  # Sempre começa o game aqui
+pg.init()
+
 screen = pg.display.set_mode((mech.altura, mech.largura))
 pg.display.set_caption('POKEMON FIRE/RED DEEPWEB')
-running = True
 
-#Mapa
-screen.fill(color.cores["preto"])
-mapa_main = pg.transform.scale(imagem.mapa, (mech.altura_mapa, mech.largura_mapa))
+def main():
+    cena_atual = 'menu'
 
-#Loop infinito
-while running:
-    # pygame.QUIT se clicar no X o jogo fecha
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
-
-    screen.blit(mapa_main, (-mech.camera_x, -mech.camera_y))
-
-    #Movimentar jogador
-    keys = pg.key.get_pressed()
-    mech.movimentarJogador(keys)
-
-    # Desenhar o círculo (Player)
-    pg.draw.circle(screen, color.cores["vermelho"], (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y), mech.raio)
+   # Dicionário que mapeia cenas para funções correspondentes
+    cenas = {
+    'menu': menu.menu,        # Chama a função menu() dentro do módulo menu.py
+    'mochila': mochila.mochila,  # Chama a função mochila() dentro do módulo mochila.py
+    'game': game.game       # Chama a função start() dentro do módulo game.py
+    }
 
 
-    pg.time.Clock().tick(60) #60 fps
-    pg.display.flip()  # Atualizar
-    pg.time.wait(1)
+    while True:
+        print(f'Executando cena: {cena_atual}')
 
-pg.quit()
-sys.exit()
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
+                sys.exit()
+            
+        if cena_atual == "sair":
+            print("adios\n")
+            pg.quit()
+            sys.exit()
+
+        # Verifica se a cena atual está no dicionário
+        if cena_atual in cenas:
+            cena_atual = cenas[cena_atual](screen)
+        else:
+            print(f"Cena inválida: {cena_atual}")
+            break
+
+#if __name__ == "_main_":
+main()
