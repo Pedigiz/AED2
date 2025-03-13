@@ -1,52 +1,43 @@
-import pygame as pg
+import os
 import sys
+import pygame as pg
 
-import src.styles.imagens as imagem
-import src.styles.color as color
-import src.back.mechanics as mech
+import src.pages.menu as menu
 
-#Inicializar
-#Config básicas do pygame
-pg.init()  # Sempre começa o game aqui
-screen = pg.display.set_mode((mech.altura, mech.largura))
-pg.display.set_caption('POKEMON FIRE/RED DEEPWEB')
-running = True
+import src.pages.mochila as mochila
 
-#Mapa
-screen.fill(color.cores["preto"])
-mapa_main = pg.transform.scale(imagem.mapa, (mech.altura_mapa, mech.largura_mapa))
+import src.pages.game as game
 
-#Loop infinito
-while running:
-    # pygame.QUIT se clicar no X o jogo fecha
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            running = False
+def main():
+    cena_atual = 'menu'
 
-    screen.blit(mapa_main, (-mech.camera_x, -mech.camera_y))
+   # Dicionário que mapeia cenas para funções correspondentes
+    cenas = {
+    'menu': menu.menu,        # Chama a função menu() dentro do módulo menu.py
+    'mochila': mochila.mochila,  # Chama a função mochila() dentro do módulo mochila.py
+    'game': game.game       # Chama a função start() dentro do módulo game.py
+    }
 
-    #Movimentar jogador
-    keys = pg.key.get_pressed()
-    mech.movimentarJogador(keys)
-    if event.type == pg.MOUSEBUTTONDOWN: # Ver com a Fernanda
-        mech.verificaMouse()
 
-    # Desenhar o círculo (Player)
-    pg.draw.circle(screen, color.cores["vermelho"], (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y), mech.raio)
-    
-    for chave,tupla in mech.valores_ginasios.items():
-        x_ginasio, y_ginasio = tupla
-        jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio+mech.raio2)//2), ((y_ginasio+mech.raio2)//2 ), mech.raio2)
+    while True:
+        print(f'Executando cena: {cena_atual}')
 
-        if jogador_proximo:
-            mech.popUp(tupla, x_ginasio, y_ginasio)
-            if keys[pg.K_e]:
-                print(tupla)
-    
-    
-    pg.time.Clock().tick(60) #60 fps
-    pg.display.flip()  # Atualizar
-    pg.time.wait(1)
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
+                sys.exit()
+            
+        if cena_atual == "sair":
+            print("adios\n")
+            pg.quit()
+            sys.exit()
 
-pg.quit()
-sys.exit()
+        # Verifica se a cena atual está no dicionário
+        if cena_atual in cenas:
+            cena_atual = cenas[cena_atual](screen)
+        else:
+            print(f"Cena inválida: {cena_atual}")
+            break
+
+#if __name__ == "_main_":
+main()
