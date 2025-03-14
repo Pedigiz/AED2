@@ -25,14 +25,13 @@ PosicaoJogador = pg.Vector2(x_player, y_player)
 
 
 # X : Y Valores de onde estarao os "ginasios"
-valores_ginasios = {
-                    "Ginasio 1" : (1092,196),
-                    "Ginasio 2" : (557,235),
-                    "Ginasio 3" : (1126,365),
-                    "Ginasio 4" : (492,453),
-                    "Ginasio 5" : (608,761)
+valores_regioes = {
+                    "Alola" : (557,235),
+                    "Kanto" : (1092,196),
+                    "Galar" : (1126,365),
+                    "Sinnoh" : (492,453),
+                    "Unova" : (608,761)
                 }
-
 
 #Movimentação do personagem
 def movimentarJogador(keys):
@@ -63,3 +62,63 @@ def verificaMouse():
 
 def popUp():
     None
+
+def calculaDistaciaRegioes (grafoRegioes, regiaoAtual):
+    distancia_atual = calcular_dijkstra(grafoRegioes, regiaoAtual)
+    print (distancia_atual)
+
+# TIRAR ISSO DAQUI PARA UMA PASTA DIFERENTE
+
+#Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
+import sys
+
+#Definimos a função dijkstra que implementa o algoritmo de Dijkstra. Essa função recebe o grafo e o vértice de origem como parâmetros.
+def calcular_dijkstra(grafo, origem):
+
+  #Inicializamos as distâncias para todos os vértices como infinito, exceto para o vértice de origem que é definido como zero
+  distancias = {v: sys.maxsize for v in grafo}
+  distancias[origem] = 0
+
+  # Conjunto de vértices visitados
+  visitados = set()
+
+  while visitados != set(distancias):
+      # Encontra o vértice não visitado com menor distância atual
+      vertice_atual = None
+      menor_distancia = sys.maxsize
+      for v in grafo:
+          if v not in visitados and distancias[v] < menor_distancia:
+              vertice_atual = v
+              menor_distancia = distancias[v]
+
+      # Marca o vértice atual como visitado
+      visitados.add(vertice_atual)
+
+      # Atualiza as distâncias dos vértices vizinhos
+      for vizinho, peso in grafo[vertice_atual].items():
+          if distancias[vertice_atual] + peso < distancias[vizinho]:
+              distancias[vizinho] = distancias[vertice_atual] + peso
+
+  # Retorna as distâncias mais curtas a partir da origem
+  return distancias
+
+regioes = {
+  'Alola': {'Kanto': 5, 'Galar': 3, 'Sinnoh': 2},
+  'Kanto': {'Alola': 5, 'Galar': 2, 'Unova': 4},
+  'Galar': {'Alola': 3, 'Kanto': 2, 'Sinnoh': 1},
+  'Sinnoh': {'Alola': 2, 'Galar': 1, 'Unova': 7},
+  'Unova': {'Kanto': 4, 'Sinnoh': 7}
+}
+
+# Ponto de partida
+origem = 'Kanto'
+
+# Chamando o algoritmo de Dijkstra para encontrar os caminhos mais curtos a partir de A
+caminhos_mais_curto = calcular_dijkstra(regioes, origem)
+
+# Exibindo os caminhos mais curtos
+for destino, distancia in caminhos_mais_curto.items():
+  print(f"Caminho mais curto de {origem} para {destino}: {distancia}")
+
+
+
