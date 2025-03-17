@@ -2,7 +2,7 @@ import pygame as pg
 
 pg.init()
 
-fonte = pg.font.SysFont("courier new", 40)
+fonte = pg.font.SysFont("courier new", 30)
 
 red = (255,0,0)
 black = (0,0,0)
@@ -11,7 +11,7 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 
 def botao(screen, texto, x, y, largura, altura, cor_borda, cor_texto, cor_fundo, acao):
-    fonte = pg.font.SysFont('Arial', 30)
+    global fonte
     texto_surface = fonte.render(texto, True, cor_texto)
     texto_rect = texto_surface.get_rect(center=(x + largura // 2, y + altura // 2))
 

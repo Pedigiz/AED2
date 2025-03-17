@@ -3,13 +3,15 @@ import sys
 import pygame as pg
 
 import src.pages.menu as menu
-
 import src.pages.mochila as mochila
-
 import src.pages.game as game
+
+import src.back.mechanics as mech
 
 def main():
     cena_atual = 'menu'
+
+    screen = pg.display.set_mode((mech.altura, mech.largura))
 
    # Dicionário que mapeia cenas para funções correspondentes
     cenas = {
