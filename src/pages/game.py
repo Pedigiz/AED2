@@ -52,6 +52,7 @@ def game(screen):
                 #mech.popUp(tupla, x_ginasio, y_ginasio)
                 if keys[pg.K_e]:
                     print(chave)
+                    pg.time.delay(100)
                     # Esta printando varias vezes, arruma isto
         regiaoAtual = 'Alola'
         

@@ -7,8 +7,6 @@ import src.pages.mochila as mochila
 import src.pages.game as game
 import src.back.mechanics as mech
 
-import src.back.mechanics as mech
-
 def main():
     cena_atual = 'menu'
 
