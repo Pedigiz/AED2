@@ -27,7 +27,7 @@ def mochila(screen):
     #os.path.join(charizardSprite, f) junta o caminho do arquivo
     base_dir = os.path.dirname(__file__)
     
-    for i in ['charizard', 'pikachu']:
+    for i in ['charizard']:
         caminho_completo = os.path.join(base_dir, "..", "art", "pokemons", "sprites", f"{i}_sprite")
         
         charizard_sprite = sorted([(os.path.join(caminho_completo, f), int(f.split('\\')[-1].split('.')[0])) for f in os.listdir(caminho_completo)], key=lambda x: x[1])
@@ -50,7 +50,7 @@ def mochila(screen):
         screen.blit(mochila_gato_meme, (600,400))
 
         #-------------------------DESENHAR OS SPRITES-------------------------------------
-        screen.blit(charizard_sprite[indice_frame], (40, 10))  #Desenhar o frame atual
+        screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
 
         # Atualizar frame
         indice_frame = (indice_frame + 1) % len(charizard_sprite) 

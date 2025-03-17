@@ -1,6 +1,5 @@
 #Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
 import sys
-import config
 
 # Leitura dos arquivos
 def lerArquivo():
