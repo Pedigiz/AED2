@@ -1,15 +1,26 @@
 #Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
 import sys
-import src.back.config as config
-
+import config
 
 # Leitura dos arquivos
-arquivo =  open ("", "r") # Abrir os arquivos
-
-
-
-
-
+def lerArquivo():
+  grafo = dict()
+  listapokemon = list()
+  with open ('./src/config/config_1.txt', 'r') as arquivo: # Abrir os arquivos
+    for linha in arquivo:
+      if linha:
+        if "[" not in linha and "]" not in linha and not linha.isdigit():
+          listapokemon.append(linha) # Primeiro da lista sempre vai ser o inicial.
+        if "[" in linha and "]" in linha:
+          partes = linha.split('[', -1)
+          if len(partes) == 3: # Sem isso aqui nao funciona ?????
+            c1 = partes[1].split(']')[0]
+            peso = partes[1].split(']')[1]
+            c2 = partes[2].split(']')[0]
+            grafo[c1] = peso
+            grafo[c2] = peso
+  print (grafo)
+lerArquivo()
 
 #Definimos a função dijkstra que implementa o algoritmo de Dijkstra. Essa função recebe o grafo e o vértice de origem como parâmetros.
 def calcular_dijkstra(grafo, origem):
@@ -41,21 +52,3 @@ def calcular_dijkstra(grafo, origem):
   # Retorna as distâncias mais curtas a partir da origem
   return distancias
 
-# Definindo o grafo com as conexões e custos
-grafo = {
-  'Alola': {'Kanto': 5, 'Galar': 3, 'Sinnoh': 2},
-  'Kanto': {'Alola': 5, 'Galar': 2, 'Sinnoh': 4},
-  'Galar': {'Alola': 3, 'Kanto': 2, 'Sinnoh': 1},
-  'Sinnoh': {'Alola': 2, 'Galar': 1, 'Kanto': 7},
-  'Unova': {} # Ver aqui se faz sentido ter peso
-  }
-
-# Ponto de partida
-origem = 'Alola'
-
-# Chamando o algoritmo de Dijkstra para encontrar os caminhos mais curtos a partir de A
-caminhos_mais_curto = calcular_dijkstra(grafo, origem)
-
-# Exibindo os caminhos mais curtos
-for destino, distancia in caminhos_mais_curto.items():
-  print(f"Caminho mais curto de {origem} para {destino}: {distancia}")

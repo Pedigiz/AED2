@@ -1,0 +1,11 @@
+[kanto]
+
+pikachu
+
+[alola] 7 [kanto]
+[kanto] 12 [johto]
+[johto] 9 [hoenn]
+[hoenn] 15 [sinnoh]
+[sinnoh] 11 [unova]
+
+charizard
