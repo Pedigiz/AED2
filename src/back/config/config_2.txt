@@ -1,0 +1,25 @@
+[solaceon-ruins-b3f-d]
+
+unown
+
+[turnback-cave-pillar-2] 4 [solaceon-ruins-b3f-c]
+[turnback-cave-pillar-2] 6 [solaceon-ruins-b3f-d]
+[turnback-cave-pillar-2] 3 [solaceon-ruins-b1f-c]
+[solaceon-ruins-b3f-c] 5 [solaceon-ruins-b1f-c]
+[solaceon-ruins-b1f-c] 5 [solaceon-ruins-b3f-d]
+[solaceon-ruins-b1f-c] 1 [turnback-cave-pillar-3]
+[solaceon-ruins-b1f-c] 10 [solaceon-ruins-b4f-c]
+[solaceon-ruins-b3f-d] 6 [solaceon-ruins-b4f-c]
+[solaceon-ruins-b4f-c] 9 [wayward-cave-b1f]
+[wayward-cave-b1f] 1 [solaceon-ruins-b3f-b]
+[wayward-cave-b1f] 1 [iron-island-area]
+[solaceon-ruins-b3f-b] 6 [ruin-maniac-cave-10-25-different-unown-caught]
+[ruin-maniac-cave-10-25-different-unown-caught] 2 [turnback-cave-pillar-3]
+[ruin-maniac-cave-10-25-different-unown-caught] 5 [iron-island-area]
+[turnback-cave-pillar-3] 10 [iron-island-area]
+[iron-island-area] 6 [sinnoh-victory-road-b1f]
+[sinnoh-victory-road-b1f] 10 [snowpoint-temple-b3f]
+
+[snowpoint-temple-b3f]
+
+unown

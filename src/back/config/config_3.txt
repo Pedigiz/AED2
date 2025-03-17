@@ -1,0 +1,21 @@
+[sinnoh-victory-road-2f]
+
+onix
+
+[sinnoh-victory-road-inside-exit] 10 [sendoff-spring-area]
+[sendoff-spring-area] 2 [great-marsh-area-6]
+[great-marsh-area-6] 1 [mt-coronet-1f-route-216]
+[mt-coronet-1f-route-216] 3 [sinnoh-victory-road-b1f]
+[mt-coronet-1f-route-216] 3 [great-marsh-area-3]
+[sinnoh-victory-road-b1f] 3 [solaceon-ruins-b3f-a]
+[solaceon-ruins-b3f-a] 8 [solaceon-ruins-b3f-e]
+[solaceon-ruins-b3f-e] 9 [great-marsh-area-3]
+[great-marsh-area-3] 9 [solaceon-ruins-b2f-b]
+[solaceon-ruins-b2f-b] 7 [solaceon-ruins-b3f-d]
+[solaceon-ruins-b3f-d] 9 [sinnoh-victory-road-2f]
+[solaceon-ruins-b3f-d] 7 [stark-mountain-entrance]
+[sinnoh-victory-road-2f] 4 [stark-mountain-entrance]
+
+[solaceon-ruins-b3f-a]
+
+onix

@@ -1,0 +1,29 @@
+[great-marsh-area-5]
+
+carvanha
+
+[turnback-cave-after-pillar-3] 8 [sinnoh-victory-road-inside]
+[turnback-cave-after-pillar-3] 1 [solaceon-ruins-b3f-a]
+[turnback-cave-after-pillar-3] 5 [maniac-tunnel-26-plus-different-unown-caught]
+[turnback-cave-after-pillar-3] 9 [solaceon-ruins-1f]
+[sinnoh-victory-road-inside] 7 [turnback-cave-pillar-2]
+[sinnoh-victory-road-inside] 9 [solaceon-ruins-1f]
+[sinnoh-victory-road-inside] 5 [solaceon-ruins-b2f-c]
+[turnback-cave-pillar-2] 4 [solaceon-ruins-b2f-c]
+[turnback-cave-pillar-2] 7 [great-marsh-area-5]
+[turnback-cave-pillar-2] 9 [solaceon-ruins-1f]
+[solaceon-ruins-b2f-c] 4 [great-marsh-area-5]
+[solaceon-ruins-b2f-c] 9 [oreburgh-gate-1f]
+[solaceon-ruins-b2f-c] 3 [maniac-tunnel-26-plus-different-unown-caught]
+[solaceon-ruins-b2f-c] 8 [mt-coronet-1f-route-216]
+[great-marsh-area-5] 1 [sinnoh-victory-road-1f]
+[sinnoh-victory-road-1f] 3 [solaceon-ruins-b3f-a]
+[solaceon-ruins-b3f-a] 7 [maniac-tunnel-26-plus-different-unown-caught]
+[maniac-tunnel-26-plus-different-unown-caught] 7 [turnback-cave-between-pillars-2-and-3]
+[turnback-cave-between-pillars-2-and-3] 6 [solaceon-ruins-1f]
+[solaceon-ruins-1f] 5 [mt-coronet-1f-route-216]
+[mt-coronet-1f-route-216] 1 [oreburgh-gate-1f]
+
+[sinnoh-victory-road-1f]
+
+hoothoot

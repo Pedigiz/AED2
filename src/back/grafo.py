@@ -1,5 +1,15 @@
 #Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
 import sys
+import src.back.config as config
+
+
+# Leitura dos arquivos
+arquivo =  open ("", "r") # Abrir os arquivos
+
+
+
+
+
 
 #Definimos a função dijkstra que implementa o algoritmo de Dijkstra. Essa função recebe o grafo e o vértice de origem como parâmetros.
 def calcular_dijkstra(grafo, origem):
@@ -41,11 +51,11 @@ grafo = {
   }
 
 # Ponto de partida
-#origem = 'Alola'
+origem = 'Alola'
 
 # Chamando o algoritmo de Dijkstra para encontrar os caminhos mais curtos a partir de A
-#caminhos_mais_curto = calcular_dijkstra(grafo, origem)
+caminhos_mais_curto = calcular_dijkstra(grafo, origem)
 
 # Exibindo os caminhos mais curtos
-#for destino, distancia in caminhos_mais_curto.items():
-#  print(f"Caminho mais curto de {origem} para {destino}: {distancia}")
+for destino, distancia in caminhos_mais_curto.items():
+  print(f"Caminho mais curto de {origem} para {destino}: {distancia}")
