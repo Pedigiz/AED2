@@ -1,4 +1,5 @@
 import pygame as pg
+import src.back.grafo as grafo
 
 #Tamanho da tela
 altura, largura = 800, 600
@@ -25,14 +26,13 @@ PosicaoJogador = pg.Vector2(x_player, y_player)
 
 
 # X : Y Valores de onde estarao os "ginasios"
-valores_ginasios = {
-                    "Ginasio 1" : (1092,196),
-                    "Ginasio 2" : (557,235),
-                    "Ginasio 3" : (1126,365),
-                    "Ginasio 4" : (492,453),
-                    "Ginasio 5" : (608,761)
+valores_regioes = {
+                    "Alola" : (557,235),
+                    "Kanto" : (1092,196),
+                    "Galar" : (1126,365),
+                    "Sinnoh" : (492,453),
+                    "Unova" : (608,761)
                 }
-
 
 #Movimentação do personagem
 def movimentarJogador(keys):
@@ -63,3 +63,7 @@ def verificaMouse():
 
 def popUp():
     None
+
+def calculaDistaciaRegioes (grafoRegioes, regiaoAtual):
+    distancia_atual = calcular_dijkstra(grafoRegioes, regiaoAtual)
+    print (distancia_atual)

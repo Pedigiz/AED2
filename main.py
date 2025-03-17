@@ -5,6 +5,7 @@ import pygame as pg
 import src.pages.menu as menu
 import src.pages.mochila as mochila
 import src.pages.game as game
+import src.back.mechanics as mech
 
 import src.back.mechanics as mech
 
@@ -15,11 +16,10 @@ def main():
 
    # Dicionário que mapeia cenas para funções correspondentes
     cenas = {
-    'menu': menu.menu,        # Chama a função menu() dentro do módulo menu.py
+    'menu': menu.menu,           # Chama a função menu() dentro do módulo menu.py
     'mochila': mochila.mochila,  # Chama a função mochila() dentro do módulo mochila.py
-    'game': game.game       # Chama a função start() dentro do módulo game.py
+    'game': game.game            # Chama a função start() dentro do módulo game.py
     }
-
 
     while True:
         print(f'Executando cena: {cena_atual}')
