@@ -1,5 +1,7 @@
 import pygame as pg
 import src.back.grafo as grafo
+import src.styles.color as color
+
 
 #Tamanho da tela
 altura, largura = 800, 600
@@ -27,11 +29,11 @@ PosicaoJogador = pg.Vector2(x_player, y_player)
 
 # X : Y Valores de onde estarao os "ginasios"
 valores_regioes = {
-                    "Alola" : (557,235),
-                    "Kanto" : (1092,196),
-                    "Galar" : (1126,365),
-                    "Sinnoh" : (492,453),
-                    "Unova" : (608,761)
+                    "alola" : (557,235),
+                    "kanto" : (1092,196),
+                    "galar" : (1126,365),
+                    "sinnoh" : (492,453),
+                    "unova" : (608,761)
                 }
 
 #Movimentação do personagem
@@ -61,9 +63,21 @@ def verificaMouse():
     mouse_pos_mundo = pg.Vector2(mouse_pos[0] + camera_x, mouse_pos[1] + camera_y)
     print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
 
-def popUp():
-    None
+def show_popup(screen, message, position):
+    popup_surface = pg.Surface((400, 200))
+    popup_surface.fill(color.white)
+    pg.draw.rect(popup_surface, color.blue, (0, 0, 400, 200), 5)
+
+    font = pg.font.SysFont(None, 36)
+    text = font.render(message, True, color.black)
+    text_rect = text.get_rect(center=(200, 100))
+
+    popup_surface.blit(text, text_rect)
+    
+    # Exibe o popup na tela na posição especificada
+    screen.blit(popup_surface, position)
 
 def calculaDistaciaRegioes (grafoRegioes, regiaoAtual):
-    distancia_atual = calcular_dijkstra(grafoRegioes, regiaoAtual)
-    print (distancia_atual)
+    distancia_atual = grafo.calcular_dijkstra(grafo.grafo, grafo.ginasioinicial)
+    for destino, distancia in grafo.caminhos_mais_curto.items():
+        print(f"Caminho mais curto de {grafo.ginasioinicial} para {destino}: {distancia}")

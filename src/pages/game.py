@@ -49,12 +49,10 @@ def game(screen):
             jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio+mech.raio2)//2), ((y_ginasio+mech.raio2)//2 ), mech.raio2)
             
             if jogador_proximo:
-                #mech.popUp(tupla, x_ginasio, y_ginasio)
+                # Aqui eu deveria chamar o popup ADICIONAR ESSA LOGICA!!!!
                 if keys[pg.K_e]:
                     print(chave)
                     pg.time.delay(100)
-                    # Esta printando varias vezes, arruma isto
-        regiaoAtual = 'Alola'
         
         pg.time.Clock().tick(60) #60 fps
         pg.display.flip()  # Atualizar
