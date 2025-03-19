@@ -1,12 +1,15 @@
 #Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
 import sys
 
+listaGinasios = ["alola","kanto","johto", "hoenn", "sinnoh"]
+
 # Leitura dos arquivos
 def lerArquivo():
   global grafo
   global ginasioinicial
   global pokemoninicial
   global pokemonfinal
+  global grafo
   grafo = dict()
   listapokemon = list()
   with open ('./src/config/config_1.txt', 'r') as arquivo: # Abrir os arquivos
@@ -18,7 +21,7 @@ def lerArquivo():
 
     for linha in conteudo[3: -1]:
       partes = linha.split()
-      print(partes)
+      #print(partes)
       if len(partes) == 3: # Sem isso aqui nao funciona ?????
         c1 = partes[0]
         peso = int(partes[1])
@@ -33,7 +36,7 @@ def lerArquivo():
         grafo[c1][c2] = peso
         grafo[c2][c1] = peso
     
-    print(grafo)
+    #print(grafo)
     
 lerArquivo()
 
@@ -68,3 +71,10 @@ def calcular_dijkstra(grafo, origem):
 
   # Retorna as distâncias mais curtas a partir da origem
   return distancias
+
+# Como sabemos que vamos usar podemos calcular o dikstra para cada "origem" vou salvar um calculo de todos
+def calculaDistanciasGinasios(): # Esta me retornando um dicionario
+  resultados = dict() 
+  for ginasios in listaGinasios:
+    resultados [ginasios] = calcular_dijkstra(grafo,ginasios)
+  return resultados

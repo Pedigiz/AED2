@@ -2,6 +2,10 @@ import pygame as pg
 import src.back.grafo as grafo
 import src.styles.color as color
 
+# Funcoes para fazer o popup
+popup_text = None
+popup_timer = 0
+
 
 #Tamanho da tela
 altura, largura = 800, 600
@@ -31,9 +35,9 @@ PosicaoJogador = pg.Vector2(x_player, y_player)
 valores_regioes = {
                     "alola" : (557,235),
                     "kanto" : (1092,196),
-                    "galar" : (1126,365),
-                    "sinnoh" : (492,453),
-                    "unova" : (608,761)
+                    "johto" : (1126,365),
+                    "hoenn" : (492,453),
+                    "sinnoh" : (608,761)
                 }
 
 #Movimentação do personagem
@@ -63,21 +67,15 @@ def verificaMouse():
     mouse_pos_mundo = pg.Vector2(mouse_pos[0] + camera_x, mouse_pos[1] + camera_y)
     print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
 
-def show_popup(screen, message, position):
-    popup_surface = pg.Surface((400, 200))
-    popup_surface.fill(color.white)
-    pg.draw.rect(popup_surface, color.blue, (0, 0, 400, 200), 5)
+def exibir_popup(screen, mensagem):
+    text_surface = color.fonte.render(mensagem, True, color.white)
 
-    font = pg.font.SysFont(None, 36)
-    text = font.render(message, True, color.black)
-    text_rect = text.get_rect(center=(200, 100))
+    # Criar retângulo do popup
+    popup_rect = pg.Rect(50, 50, 650, 50)
+    pg.draw.rect(screen, color.black, popup_rect)  # Fundo preto
 
-    popup_surface.blit(text, text_rect)
-    
-    # Exibe o popup na tela na posição especificada
-    screen.blit(popup_surface, position)
+    # Desenhar borda branca ao redor
+    pg.draw.rect(screen, color.white, popup_rect, 2)
 
-def calculaDistaciaRegioes (grafoRegioes, regiaoAtual):
-    distancia_atual = grafo.calcular_dijkstra(grafo.grafo, grafo.ginasioinicial)
-    for destino, distancia in grafo.caminhos_mais_curto.items():
-        print(f"Caminho mais curto de {grafo.ginasioinicial} para {destino}: {distancia}")
+    # Desenhar texto sobre o retângulo
+    screen.blit(text_surface, (65, 65))
