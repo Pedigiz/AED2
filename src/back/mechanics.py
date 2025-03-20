@@ -1,5 +1,11 @@
 import pygame as pg
 import src.back.grafo as grafo
+import src.styles.color as color
+
+# Funcoes para fazer o popup
+popup_text = None
+popup_timer = 0
+
 
 #Tamanho da tela
 altura, largura = 800, 600
@@ -26,11 +32,11 @@ PosicaoJogador = pg.Vector2(x_player, y_player)
 
 # X : Y Valores de onde estarao os "ginasios"
 valores_regioes = {
-                    "Alola" : (557,235),
-                    "Kanto" : (1092,196),
-                    "Galar" : (1126,365),
-                    "Sinnoh" : (492,453),
-                    "Unova" : (608,761)
+                    "alola" : (557,235),
+                    "kanto" : (1092,196),
+                    "johto" : (1126,365),
+                    "hoenn" : (492,453),
+                    "sinnoh" : (608,761)
                 }
 
 #Movimentação do personagem
@@ -60,9 +66,15 @@ def verificaMouse():
     mouse_pos_mundo = pg.Vector2(mouse_pos[0] + camera_x, mouse_pos[1] + camera_y)
     print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
 
-def popUp():
-    None
+def exibir_popup(screen, mensagem):
+    text_surface = color.fonte.render(mensagem, True, color.white)
 
-def calculaDistaciaRegioes (grafoRegioes, regiaoAtual):
-    distancia_atual = calcular_dijkstra(grafoRegioes, regiaoAtual)
-    print (distancia_atual)
+    # Criar retângulo do popup
+    popup_rect = pg.Rect(50, 50, 650, 50)
+    pg.draw.rect(screen, color.black, popup_rect)  # Fundo preto
+
+    # Desenhar borda branca ao redor
+    pg.draw.rect(screen, color.white, popup_rect, 2)
+
+    # Desenhar texto sobre o retângulo
+    screen.blit(text_surface, (65, 65))

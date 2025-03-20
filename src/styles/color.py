@@ -2,7 +2,7 @@ import pygame as pg
 
 pg.init()
 
-fonte = pg.font.SysFont("courier new", 30)
+fonte = pg.font.SysFont("courier new", 20)
 
 red = (255,0,0)
 black = (0,0,0)
