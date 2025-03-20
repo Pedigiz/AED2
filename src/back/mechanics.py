@@ -3,6 +3,8 @@ from random import randint
 import src.back.grafo as grafo
 import src.styles.color as color
 
+import src.back.MontarPokemons as pokemon
+
 # Funcoes para fazer o popup
 popup_text = None
 popup_timer = 0
@@ -55,8 +57,6 @@ valores_pokemons = {'charizard' : (1245, 1135),
 
 # Remover botoes quando tentar capturar o pokemon
 botoes_visiveis = set(valores_pokemons.keys())  # Começa com todos os botões
-pokemons_capturados = list()  # Lista dos pokemons que estao capturados 
-
 
 #Movimentação do personagem
 def movimentarJogador(keys):
@@ -108,14 +108,13 @@ def insereBotoes (screen):
             # Desenha o botão na tela ajustada pela câmera
             screen.blit(imageexclamacao, posicao_com_camera)
 
-def capturaPokemon(pokemon):
+def capturaPokemon(pokemon2):
     porcentagemCaptura = randint(0,100)
     if porcentagemCaptura >= 67:
         # Aqui dar um popup que o pokemon escapou
         return False
     else:
-        pokemons_capturados.append(pokemon)
-        print(pokemons_capturados)
+        getattr(pokemon, pokemon2)['capturado'] = True
         return True
     
 def removeBotaoPokemon(pokemon):

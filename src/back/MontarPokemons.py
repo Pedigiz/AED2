@@ -48,7 +48,3 @@ mewtwo = get_pokemon_info("mewtwo", df)
 pikachu = get_pokemon_info("pikachu", df)
 rayquaza = get_pokemon_info("rayquaza", df)
 venusaur = get_pokemon_info("venusaur", df)
-
-blastoise['capturado'] = True
-rayquaza['capturado'] = True
-mewtwo['capturado'] = True

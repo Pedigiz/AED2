@@ -9,6 +9,8 @@ import src.back.grafo as grafo
 import src.back.MontarPokemons as pokemon
 
 
+import src.back.MontarPokemons as pokemon
+
 #Inicializar
 #Config básicas do pygame
 def game(screen):
@@ -101,6 +103,8 @@ def game(screen):
                                 menor_chave = [k for k, v in valor.items() if v == menor_valor]
                                 mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
+                                #mech.exibir_popup(screen, mech.popup_text)
+
 
         # Verficar se o jogador esta na posicao do pokemon para a funcao de captura do pokemon
         for chavePokemon, tuplaPokemon in mech.valores_pokemons.items():
@@ -109,7 +113,7 @@ def game(screen):
 
             if jogadorProximoPokemon: # Aqui retorna true quando o jogador ta "perto" do ponto de interrogacao
                 if keys[pg.K_e]:
-                        if chavePokemon not in mech.pokemons_capturados:
+                        if not(getattr(pokemon, chavePokemon)['capturado']):
                             if mech.capturaPokemon(chavePokemon): # Passar o pokemon a ser capturado pela funcao
                                     mech.popup_text = f"Pokemon {chavePokemon} capturado!"
                                     mech.exibir_popup(screen, mech.popup_text )
@@ -150,9 +154,9 @@ def game(screen):
                             mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
 
         # Exibir popup se necessário
-        if mech.popup_text and mech.popup_timer > 0:
-            mech.exibir_popup(screen, mech.popup_text)
-            mech.popup_timer -= 1
+        #if mech.popup_text and mech.popup_timer > 0:
+        #    mech.exibir_popup(screen, mech.popup_text)
+        #    mech.popup_timer -= 1
 
         pg.time.Clock().tick(60)  # 60 FPS
         pg.display.flip()
