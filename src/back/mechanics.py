@@ -1,4 +1,5 @@
 import pygame as pg
+from random import randint
 import src.back.grafo as grafo
 import src.styles.color as color
 
@@ -39,6 +40,24 @@ valores_regioes = {
                     "sinnoh" : (608,761)
                 }
 
+valores_pokemons = {'charizard' : (1245, 1135),
+                    'charmander': (1323, 652), 
+                    'venusaur' : (1267, 95),
+                    'blastoise' : (904, 90),
+                    'pikachu' : (780, 720), 
+                    'igglybuff': (514, 925),
+                    'gyarados': (570, 1150), 
+                    'rayquaza': (334, 670),
+                    'garchomp': (116,1018), 
+                    'mewtwo': (122, 732), 
+                    'machamp': (128, 370)
+}
+
+# Remover botoes quando tentar capturar o pokemon
+botoes_visiveis = set(valores_pokemons.keys())  # Começa com todos os botões
+pokemons_capturados = list()  # Lista dos pokemons que estao capturados 
+
+
 #Movimentação do personagem
 def movimentarJogador(keys):
     global x_player, y_player, camera_x, camera_y   #Deu mó BO sem isso
@@ -58,7 +77,7 @@ def movimentarJogador(keys):
 
 def proximoDoObjeto(x_jogador, y_jogador, x_objeto, y_objeto, raio2):
     distancia = ((x_jogador - x_objeto) ** 2 + (y_jogador - y_objeto) ** 2) ** 0.5
-    return distancia <= raio2 # ´Só vai retornar se isso for verdade
+    return distancia <= raio2 # Só vai retornar se isso for verdade
         
 #Verificacao de Onde o mouse esta sendo clicado para poder inserir os pokemons mais facilmente
 def verificaMouse():
@@ -78,3 +97,27 @@ def exibir_popup(screen, mensagem):
 
     # Desenhar texto sobre o retângulo
     screen.blit(text_surface, (65, 65))
+
+def insereBotoes (screen):
+    imageexclamacao = pg.image.load("./src/art/pokemons/icone_exclamacao-removebg-preview.png").convert_alpha()
+    imageexclamacao = pg.transform.scale(imageexclamacao, (20, 20))  # Redimensiona a imagem
+    for nome, posicao in valores_pokemons.items():
+        if nome in botoes_visiveis:    
+            # Calcula a posição relativa ao centro da câmera
+            posicao_com_camera = (posicao[0] - camera_x, posicao[1] - camera_y)
+            # Desenha o botão na tela ajustada pela câmera
+            screen.blit(imageexclamacao, posicao_com_camera)
+
+def capturaPokemon(pokemon):
+    porcentagemCaptura = randint(0,100)
+    if porcentagemCaptura >= 67:
+        # Aqui dar um popup que o pokemon escapou
+        return False
+    else:
+        pokemons_capturados.append(pokemon)
+        print(pokemons_capturados)
+        return True
+    
+def removeBotaoPokemon(pokemon):
+    if pokemon in botoes_visiveis:
+        botoes_visiveis.remove(pokemon)
