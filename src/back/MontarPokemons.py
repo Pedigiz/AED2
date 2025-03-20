@@ -2,7 +2,7 @@
 import os
 import sys
 import pygame as pg
-import pandas as pd
+#import pandas as pd
 
 def get_pokemon_info(pokemon_name, dataframe):
     pokemon = dataframe[dataframe['nome'].str.lower() == pokemon_name.lower()]
@@ -33,7 +33,7 @@ def get_pokemon_info(pokemon_name, dataframe):
         'image': pg.image.load(f"./src/art/pokemons/png_static_pokemons/{int(pokemon['id'])}.png"),
         'capturado': False
     }
-
+'''
 df = pd.read_csv("./src/styles/Pokedex/pokedex.csv")
 
 
@@ -51,4 +51,5 @@ venusaur = get_pokemon_info("venusaur", df)
 
 blastoise['capturado'] = True
 rayquaza['capturado'] = True
-mewtwo['capturado'] = True
+mewtwo['capturado'] = True'
+'''
