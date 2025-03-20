@@ -44,7 +44,7 @@ def imprime_dados_pokemon(pokemon_pesquisa):
 
 
 #Pegar uns 50 pokemons #FODA
-numero_pokemons = 50
+numero_pokemons = 500
 pokedex = [] #Criar uma lista para guardar os dicionarios
 
 for pokemon in range(1, numero_pokemons):
