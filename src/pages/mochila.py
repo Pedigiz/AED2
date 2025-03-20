@@ -6,8 +6,7 @@ import os
 import src.styles.imagens as imagem
 import src.styles.color as color
 import src.back.mechanics as mech
-
-import src.back.mechanics as mech
+import src.back.MontarPokemons as pokemon
 
 def mochila(screen):
     indice_frame = 0
@@ -74,17 +73,61 @@ def mochila(screen):
         screen.blit(mochila_gato_meme, (600,400))
 
         #-------------------------DESENHAR OS SPRITES-------------------------------------
-        screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
-        screen.blit(charmander_sprite[indice_frame], (280, 80))
-        screen.blit(venusaur_sprite[indice_frame], (450, 60))
-        screen.blit(blastoise_sprite[indice_frame], (650, 60))
-        screen.blit(pikachu_sprite[indice_frame], (80, 275))
-        screen.blit(igglybuff_sprites[indice_frame], (275, 275))
-        screen.blit(gyarados_sprite[indice_frame], (460, 255))
-        screen.blit(rayquaza_sprite[indice_frame], (640, 220))
-        screen.blit(garchomp_sprite[indice_frame], (50, 450))
-        screen.blit(mewtwo_sprite[indice_frame], (270, 460))
-        screen.blit(machamp_sprite[indice_frame], (460, 460))
+        if (pokemon.charizard['capturado'] == True):
+            screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
+        else:
+            screen.blit(pokemon.charizard['image'], (50, 50))
+
+        if (pokemon.charmander['capturado'] == True):
+            screen.blit(charmander_sprite[indice_frame], (280, 80))
+        else:
+            screen.blit(pokemon.charmander['image'], (260, 80))
+
+        if (pokemon.venusaur['capturado'] == True):
+            screen.blit(venusaur_sprite[indice_frame], (450, 60))
+        else:
+            screen.blit(pokemon.venusaur['image'], (450, 60))
+
+        if (pokemon.blastoise['capturado'] == True):
+            screen.blit(blastoise_sprite[indice_frame], (650, 60))
+        else:
+            screen.blit(pokemon.blastoise['image'], (650, 60))
+
+        if (pokemon.pikachu['capturado'] == True):
+            screen.blit(pikachu_sprite[indice_frame], (80, 275))
+        else:
+            screen.blit(pokemon.pikachu['image'], (60, 275))
+
+        if (pokemon.igglybuff['capturado'] == True):
+            screen.blit(igglybuff_sprites[indice_frame], (275, 275))
+        else:
+            screen.blit(pokemon.igglybuff['image'], (255, 275))
+
+        if (pokemon.gyarados['capturado'] == True):
+            screen.blit(gyarados_sprite[indice_frame], (460, 255))
+        else:
+            screen.blit(pokemon.gyarados['image'], (460, 255))
+
+        if (pokemon.rayquaza['capturado'] == True):
+            screen.blit(rayquaza_sprite[indice_frame], (640, 220))
+        else:
+            screen.blit(pokemon.rayquaza['image'], (640, 250))
+
+        if (pokemon.garchomp['capturado'] == True):
+            screen.blit(garchomp_sprite[indice_frame], (50, 450))
+        else:
+            screen.blit(pokemon.garchomp['image'], (50, 450))
+
+        if (pokemon.mewtwo['capturado'] == True):
+            screen.blit(mewtwo_sprite[indice_frame], (270, 460))
+        else:
+            screen.blit(pokemon.mewtwo['image'], (260, 460))
+
+        if (pokemon.machamp['capturado'] == True):
+            screen.blit(machamp_sprite[indice_frame], (460, 460))
+        else:
+            screen.blit(pokemon.machamp['image'], (460, 460))
+
         # Atualizar frame
         indice_frame = (indice_frame + 1) % 46 #São 46 imagens de pokemons em cada sprite
         #---------------------------------------------------------------------------------
