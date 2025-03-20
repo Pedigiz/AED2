@@ -54,6 +54,16 @@ def game(screen):
         if keys[pg.K_i]:
             time.sleep(0.2)
             return 'mochila'
+        
+        #Batalha
+        if keys[pg.K_p] and 'game':
+            time.sleep(0.2)
+            return 'batalha'
+        
+        #Mapa_paint
+        if keys[pg.K_m] and 'game':
+            time.sleep(0.2)
+            return 'mapa_paint'
 
         # Desenhar o jogador
         pg.draw.circle(screen, color.red, (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y), mech.raio)
@@ -71,7 +81,7 @@ def game(screen):
         # Desenhar o círculo (Player)
         estado_jogador = animacaoJogador(keys)
         contador_fps += 1
-        screen.blit(animacoes[estado_jogador][indice], (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y))
+        screen.blit(animacoes[estado_jogador][indice], ((mech.x_player - mech.camera_x) - 50, (mech.y_player - mech.camera_y) - 60))
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
