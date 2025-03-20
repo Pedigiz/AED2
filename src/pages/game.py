@@ -55,9 +55,6 @@ def game(screen):
             time.sleep(0.2)
             return 'mochila'
 
-        # Desenhar o jogador
-        pg.draw.circle(screen, color.red, (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y), mech.raio)
-
         # Verificar proximidade com ginásios
         for chave0, tupla in mech.valores_regioes.items():
             x_ginasio, y_ginasio = tupla
@@ -67,18 +64,13 @@ def game(screen):
                 mech.raio2
             )
 
-
         # Desenhar o círculo (Player)
         estado_jogador = animacaoJogador(keys)
         contador_fps += 1
-        screen.blit(animacoes[estado_jogador][indice], (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y))
+        screen.blit(animacoes[estado_jogador][indice], ((mech.x_player - mech.camera_x) - 50, (mech.y_player - mech.camera_y) - 60))
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
-
-
-
-
 
         for chave,tupla in mech.valores_regioes.items():
             x_ginasio, y_ginasio = tupla
