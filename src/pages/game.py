@@ -58,7 +58,7 @@ def game(screen):
                         if keys[pg.K_e]:
                             menor_valor = min(v for k, v in valor.items() if v > 0)
                             menor_chave = [k for k, v in valor.items() if v == menor_valor]
-                            mech.popup_text = f"De {chave} -> Para {menor_chave} com valor: {menor_valor}"
+                            mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
                             mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
 
         # Exibir popup se necessário
