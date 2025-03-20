@@ -20,19 +20,43 @@ def mochila(screen):
     mochila_gato_meme = pg.transform.scale(imagem.show_pokemons_backpack, (200, 200))
     inventario_scale = pg.transform.scale(imagem.inventario, (800, 600))
 
-
     #Carregar os sprites dos pokemons
     #Explicação das linhas:
     #os.listdir: Lista todos os arquivos na pasta
     #os.path.join(charizardSprite, f) junta o caminho do arquivo
     base_dir = os.path.dirname(__file__)
     
-    for i in ['charizard']:
+    for i in ['charizard', 'charmander', 'venusaur', 'blastoise', 'pikachu', 'igglybuff', 'gyarados', 'rayquaza',
+              'garchomp', 'mewtwo', 'machamp']:
         caminho_completo = os.path.join(base_dir, "..", "art", "pokemons", "sprites", f"{i}_sprite")
         
-        charizard_sprite = sorted([(os.path.join(caminho_completo, f), int(f.split('\\')[-1].split('.')[0])) for f in os.listdir(caminho_completo)], key=lambda x: x[1])
+        poke_sprite = sorted([(os.path.join(caminho_completo, f), int(f.split('\\')[-1].split('.')[0])) for f in os.listdir(caminho_completo)], key=lambda x: x[1])
+        
+        sprites = ([pg.image.load(os.path.join(f[0])) for f in poke_sprite])
 
-        charizard_sprite = [pg.image.load(os.path.join(f[0])) for f in charizard_sprite]
+        match i:
+            case "charizard":
+                charizard_sprite = sprites
+            case "charmander":
+                charmander_sprite = sprites
+            case "venusaur":
+                venusaur_sprite = sprites
+            case "blastoise":
+                blastoise_sprite = sprites
+            case "pikachu":
+                pikachu_sprite = sprites
+            case "igglybuff":
+                igglybuff_sprites = sprites
+            case "gyarados":
+                gyarados_sprite = sprites
+            case "rayquaza":
+                rayquaza_sprite = sprites
+            case "garchomp":
+                garchomp_sprite = sprites
+            case "mewtwo":
+                mewtwo_sprite = sprites
+            case "machamp":
+                machamp_sprite = sprites
 
     while running:
         screen.fill(color.black)  # Pintar fundo de preto
@@ -51,10 +75,18 @@ def mochila(screen):
 
         #-------------------------DESENHAR OS SPRITES-------------------------------------
         screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
-
+        screen.blit(charmander_sprite[indice_frame], (280, 80))
+        screen.blit(venusaur_sprite[indice_frame], (450, 60))
+        screen.blit(blastoise_sprite[indice_frame], (650, 60))
+        screen.blit(pikachu_sprite[indice_frame], (80, 275))
+        screen.blit(igglybuff_sprites[indice_frame], (275, 275))
+        screen.blit(gyarados_sprite[indice_frame], (460, 255))
+        screen.blit(rayquaza_sprite[indice_frame], (640, 220))
+        screen.blit(garchomp_sprite[indice_frame], (50, 450))
+        screen.blit(mewtwo_sprite[indice_frame], (270, 460))
+        screen.blit(machamp_sprite[indice_frame], (460, 460))
         # Atualizar frame
-        indice_frame = (indice_frame + 1) % len(charizard_sprite) 
-
+        indice_frame = (indice_frame + 1) % 46 #São 46 imagens de pokemons em cada sprite
         #---------------------------------------------------------------------------------
 
 

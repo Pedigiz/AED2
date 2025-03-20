@@ -30,7 +30,6 @@ x_player = altura / 2
 y_player = largura / 2
 PosicaoJogador = pg.Vector2(x_player, y_player)
 
-
 # X : Y Valores de onde estarao os "ginasios"
 valores_regioes = {
                     "alola" : (557,235),
@@ -49,7 +48,7 @@ def movimentarJogador(keys):
     if keys[pg.K_s] and y_player + speed + raio <= 1200:
         y_player += speed
     if keys[pg.K_a] and x_player - speed - raio >= 0:
-        x_player -= speed 
+        x_player -= speed
     if keys[pg.K_d] and x_player + speed + raio <= 1400:
         x_player += speed
 

@@ -16,6 +16,22 @@ def game(screen):
     clock = pg.time.Clock()
     running = True
 
+    #Variaveis responsaveis por animar o personagem
+    #Criar um dicionario de animações
+    animacoes = {
+    'cima': imagem.walkUp,
+    'baixo': imagem.walkDown,
+    'esquerda': imagem.walkLeftDown,
+    'direita': imagem.walkRightDown,
+    'parado': imagem.idle
+    }
+    indice = 0
+    fps_delay = 10
+    contador_fps = 0
+    estado_jogador = 'parado'
+
+    #CARREGAR A ANIMAÇÃO ANTES
+
     #Mapa
     screen.fill(color.black)
     mapa_main = pg.transform.scale(imagem.mapa, (mech.altura_mapa, mech.largura_mapa))
@@ -51,6 +67,23 @@ def game(screen):
                 mech.raio2
             )
 
+
+        # Desenhar o círculo (Player)
+        estado_jogador = animacaoJogador(keys)
+        contador_fps += 1
+        screen.blit(animacoes[estado_jogador][indice], (mech.x_player - mech.camera_x, mech.y_player - mech.camera_y))
+        if (contador_fps >= fps_delay):
+            indice = (indice + 1) % len(imagem.idle) #8 frames
+            contador_fps = 0       
+
+
+
+
+
+        for chave,tupla in mech.valores_regioes.items():
+            x_ginasio, y_ginasio = tupla
+            jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio+mech.raio2)//2), ((y_ginasio+mech.raio2)//2 ), mech.raio2)
+
             if jogador_proximo:
                 todasAsDistanciasGinasios = grafo.calculaDistanciasGinasios()
                 for chave, valor in todasAsDistanciasGinasios.items():
@@ -71,3 +104,17 @@ def game(screen):
         pg.time.wait(1)
 
     return 'menu'
+
+def animacaoJogador(keys):
+    estado_jogador = 'parado'
+    
+    if keys[pg.K_w]:
+        estado_jogador = 'cima'
+    if keys[pg.K_s]:
+        estado_jogador = 'baixo'
+    if keys[pg.K_a]:
+        estado_jogador = 'esquerda' 
+    if keys[pg.K_d]:
+        estado_jogador = 'direita'
+
+    return estado_jogador
