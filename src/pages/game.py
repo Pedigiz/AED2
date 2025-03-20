@@ -6,6 +6,8 @@ import src.styles.imagens as imagem
 import src.styles.color as color
 import src.back.mechanics as mech
 import src.back.grafo as grafo
+import src.back.MontarPokemons as pokemon
+
 
 #Inicializar
 #Config básicas do pygame
