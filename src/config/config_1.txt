@@ -1,11 +1,20 @@
-[kanto]
+[alola]
 
 pikachu
 
-[alola] 7 [kanto]
-[kanto] 12 [johto]
-[johto] 9 [hoenn]
-[hoenn] 15 [sinnoh]
-[sinnoh] 11 [unova]
+[alola] 5 [kanto]
+[alola] 3 [johto]
+[alola] 2 [sinnoh]
+[kanto] 5 [alola]
+[kanto] 2 [johto]
+[kanto] 4 [sinnoh]
+[johto] 3 [alola]
+[johto] 2 [kanto]
+[johto] 1 [hoenn]
+[hoenn] 2 [alola]
+[hoenn] 1 [johto]
+[hoenn] 6 [sinnoh]
+[sinnoh] 4 [kanto]
+[sinnoh] 7 [hoenn]
 
 charizard

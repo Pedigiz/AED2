@@ -9,8 +9,6 @@ import src.pages.batalha as batalha
 import src.pages.mapa_paint as mapa_paint
 import src.back.mechanics as mech
 
-import src.back.mechanics as mech
-
 def main():
     cena_atual = 'menu'
 
