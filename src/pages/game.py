@@ -8,9 +8,6 @@ import src.back.mechanics as mech
 import src.back.grafo as grafo
 import src.back.MontarPokemons as pokemon
 
-
-import src.back.MontarPokemons as pokemon
-
 #Inicializar
 #Config básicas do pygame
 def game(screen):
@@ -74,6 +71,7 @@ def game(screen):
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
+
 
         # Verificar proximidade com ginásios
         for chave0, tupla in mech.valores_regioes.items():
