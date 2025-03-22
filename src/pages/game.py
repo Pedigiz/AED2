@@ -135,24 +135,6 @@ def game(screen):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
 
-
-
-
-
-        for chave,tupla in mech.valores_regioes.items():
-            x_ginasio, y_ginasio = tupla
-            jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio+mech.raio2)//2), ((y_ginasio+mech.raio2)//2 ), mech.raio2)
-
-            if jogador_proximo:
-                todasAsDistanciasGinasios = grafo.calculaDistanciasGinasios()
-                for chave, valor in todasAsDistanciasGinasios.items():
-                    if chave == chave0 and jogador_proximo:
-                        if keys[pg.K_e]:
-                            menor_valor = min(v for k, v in valor.items() if v > 0)
-                            menor_chave = [k for k, v in valor.items() if v == menor_valor]
-                            mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
-                            mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
-
         # Exibir popup se necessário
         if mech.popup_text and mech.popup_timer > 0:
             mech.exibir_popup(screen, mech.popup_text)
