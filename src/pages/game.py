@@ -34,8 +34,6 @@ def game(screen):
     contador_fps = 0
     estado_jogador = 'parado'
 
-    #CARREGAR A ANIMAÇÃO ANTES
-
     #Mapa
     screen.fill(color.black)
     mapa_main = pg.transform.scale(imagem.mapa, (mech.altura_mapa, mech.largura_mapa))
@@ -88,6 +86,7 @@ def game(screen):
                 (x_ginasio + mech.raio2) // 2, (y_ginasio + mech.raio2) // 2,
                 mech.raio2
             )
+        
 
             # Parte do algoritmo de dijktra para procurar o menor caminho
             for chave0,tupla in mech.valores_regioes.items():
@@ -103,7 +102,6 @@ def game(screen):
                                 menor_chave = [k for k, v in valor.items() if v == menor_valor]
                                 mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
-                                #mech.exibir_popup(screen, mech.popup_text)
 
 
         # Verficar se o jogador esta na posicao do pokemon para a funcao de captura do pokemon
@@ -126,6 +124,8 @@ def game(screen):
                                 mech.exibir_popup(screen, mech.popup_text )
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
                                 pg.time.wait(500)
+
+
 
         # Desenhar o círculo (Player)
         estado_jogador = animacaoJogador(keys)
@@ -154,9 +154,9 @@ def game(screen):
                             mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
 
         # Exibir popup se necessário
-        #if mech.popup_text and mech.popup_timer > 0:
-        #    mech.exibir_popup(screen, mech.popup_text)
-        #    mech.popup_timer -= 1
+        if mech.popup_text and mech.popup_timer > 0:
+            mech.exibir_popup(screen, mech.popup_text)
+            mech.popup_timer -= 1
 
         pg.time.Clock().tick(60)  # 60 FPS
         pg.display.flip()
