@@ -2,7 +2,7 @@
 import os
 import sys
 import pygame as pg
-#import pandas as pd
+import pandas as pd
 
 def get_pokemon_info(pokemon_name, dataframe):
     pokemon = dataframe[dataframe['nome'].str.lower() == pokemon_name.lower()]
@@ -33,7 +33,7 @@ def get_pokemon_info(pokemon_name, dataframe):
         'image': pg.image.load(f"./src/art/pokemons/png_static_pokemons/{int(pokemon['id'])}.png"),
         'capturado': False
     }
-'''
+
 df = pd.read_csv("./src/styles/Pokedex/pokedex.csv")
 
 
@@ -47,5 +47,4 @@ machamp = get_pokemon_info("machamp", df)
 mewtwo = get_pokemon_info("mewtwo", df)
 pikachu = get_pokemon_info("pikachu", df)
 rayquaza = get_pokemon_info("rayquaza", df)
-venusaur = get_pokemon_info("venusaur", df)'
-'''
+venusaur = get_pokemon_info("venusaur", df)
