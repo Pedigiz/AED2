@@ -2,11 +2,27 @@ import pygame as pg
 import time
 import sys
 import os
+import math
+
 
 import src.styles.imagens as imagem
 import src.styles.color as color
 import src.back.mechanics as mech
 import src.back.MontarPokemons as pokemon
+
+pokemon_posicoes = {
+    'charizard': (91, 104),
+    'charmander': (302, 115),
+    'venusaur': (494, 111),
+    'blastoise': (701, 109),
+    'pikachu': (80, 275),
+    'igglybuff': (275, 275),
+    'gyarados': (460, 255),
+    'rayquaza': (640, 220),
+    'garchomp': (50, 450),
+    'mewtwo': (270, 460),
+    'machamp': (512, 505)
+}
 
 def mochila(screen):
     indice_frame = 0
@@ -59,8 +75,13 @@ def mochila(screen):
 
     while running:
         screen.fill(color.black)  # Pintar fundo de preto
+        screen.blit(inventario_scale, (0,0))
+        screen.blit(mochila_gato_meme, (600,400))
 
         for event in pg.event.get():
+            if event.type == pg.MOUSEBUTTONDOWN:
+                mensagemDosPokemonsParaBatalha = pokemonsBatalha()  
+                     
             if event.type == pg.QUIT:
                 return 'sair'
 
@@ -69,11 +90,8 @@ def mochila(screen):
             time.sleep(0.1)
             return 'game'  # Voltar para o jogo
         
-        screen.blit(inventario_scale, (0,0))
-        screen.blit(mochila_gato_meme, (600,400))
-
         #-------------------------DESENHAR OS SPRITES-------------------------------------
-        if (pokemon.charizard['capturado'] == True):
+        if (pokemon.charizard['capturado'] == True):     # X e Y
             screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
         else:
             screen.blit(pokemon.charizard['image'], (50, 50))
@@ -132,9 +150,35 @@ def mochila(screen):
         indice_frame = (indice_frame + 1) % 46 #São 46 imagens de pokemons em cada sprite
         #---------------------------------------------------------------------------------
 
-
-
         pg.display.flip()  # Atualizar tela
         clock.tick(20)  # Limitar a 60 FPS  -- Aqui é 10 pra nn bugar 
 
+        if mech.popup_text and mech.popup_timer > 0:
+            mech.exibir_popup(screen, mech.popup_text)
+            mech.popup_timer -= 1
+    
+        def pokemonsBatalha():
+            raio = 50
+            pokemonsSetados = list()
+            mech.verificaMouse()
+            clique_x, clique_y = mech.mouse_pos
+
+            for nome, (px, py) in pokemon_posicoes.items():
+                distancia = math.sqrt((clique_x - px) ** 2 + (clique_y - py) ** 2)
+                if len(pokemonsSetados) >= 3:
+                    pokemonsSetados.pop(0)
+                    if distancia <= raio and getattr(pokemon, nome)['capturado']:
+                        print(f"{nome.upper()} foi selecionado!")
+                        pokemonsSetados.append(getattr(pokemon, nome))
+
+                if distancia <= raio and getattr(pokemon, nome)['capturado']:
+                    print(f"{nome.upper()} foi selecionado!")
+                    pokemonsSetados.append(getattr(pokemon, nome))
+
+            pokemons_nomes = [p['nome'] for p in pokemonsSetados]
+            return f"Pokémons escolhidos: {', '.join(pokemons_nomes)}"
+
+
     return 'menu'  # Se sair do loop, pode retornar para o menu
+
+

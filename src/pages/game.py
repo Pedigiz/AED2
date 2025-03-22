@@ -59,11 +59,6 @@ def game(screen):
             time.sleep(0.2)
             return 'mochila'
         
-        #Batalha
-        if keys[pg.K_p] and 'game':
-            time.sleep(0.2)
-            return 'batalha'
-        
         #Mapa_paint
         if keys[pg.K_m] and 'game':
             time.sleep(0.2)
@@ -98,13 +93,15 @@ def game(screen):
                     todasAsDistanciasGinasios = grafo.calculaDistanciasGinasios()
                     for chave, valor in todasAsDistanciasGinasios.items():
                         if chave == chave0 and jogador_proximo:
+                            #Batalha
+                            if keys[pg.K_p] and 'game':
+                                time.sleep(0.2)
+                                return 'batalha'
                             if keys[pg.K_e]:
                                 menor_valor = min(v for k, v in valor.items() if v > 0)
                                 menor_chave = [k for k, v in valor.items() if v == menor_valor]
                                 mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
-                                #mech.exibir_popup(screen, mech.popup_text)
-
 
         # Verficar se o jogador esta na posicao do pokemon para a funcao de captura do pokemon
         for chavePokemon, tuplaPokemon in mech.valores_pokemons.items():

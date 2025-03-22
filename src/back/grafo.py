@@ -16,8 +16,8 @@ def lerArquivo():
     conteudo = arquivo.read().replace("[","").replace("]", "").split("\n",-1)
     
     ginasioinicial = conteudo[0]
-    pokemoninicial = conteudo[2]
-    pokemonfinal = conteudo[-1]
+    pokemoninicial = conteudo[2] 
+    pokemonfinal = conteudo[-1] # Contem o pokemon do ultimo ginasio
 
     for linha in conteudo[3: -1]:
       partes = linha.split()
