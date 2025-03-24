@@ -14,7 +14,7 @@ def main():
 
     screen = pg.display.set_mode((mech.altura, mech.largura))
 
-   # Dicionário que mapeia cenas para funções correspondentes
+    # Dicionário que mapeia cenas para funções correspondentes
     cenas = {
     'menu': menu.menu,           # Chama a função menu() dentro do módulo menu.py
     'mochila': mochila.mochila,  # Chama a função mochila() dentro do módulo mochila.py

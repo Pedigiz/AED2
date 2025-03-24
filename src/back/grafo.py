@@ -78,3 +78,5 @@ def calculaDistanciasGinasios(): # Esta me retornando um dicionario
   for ginasios in listaGinasios:
     resultados [ginasios] = calcular_dijkstra(grafo,ginasios)
   return resultados
+
+print (calculaDistanciasGinasios())
