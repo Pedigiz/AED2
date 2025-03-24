@@ -16,8 +16,8 @@ def lerArquivo():
     conteudo = arquivo.read().replace("[","").replace("]", "").split("\n",-1)
     
     ginasioinicial = conteudo[0]
-    pokemoninicial = conteudo[2] 
-    pokemonfinal = conteudo[-1] # Contem o pokemon do ultimo ginasio
+    pokemoninicial = conteudo[2]
+    pokemonfinal = conteudo[-1]
 
     for linha in conteudo[3: -1]:
       partes = linha.split()
@@ -78,5 +78,3 @@ def calculaDistanciasGinasios(): # Esta me retornando um dicionario
   for ginasios in listaGinasios:
     resultados [ginasios] = calcular_dijkstra(grafo,ginasios)
   return resultados
-
-print (calculaDistanciasGinasios())

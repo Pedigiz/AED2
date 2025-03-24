@@ -21,10 +21,12 @@ pokemon_posicoes = {
     'igglybuff': (307, 317),
     'gyarados': (517, 294),
     'rayquaza': (698, 293),
-    'garchomp': (50, 450),
+    'garchomp': (60, 480),
     'mewtwo': (297, 505),
     'machamp': (516, 507)
 }
+
+pokemonsSetados = []
 
 def mochila(screen):
     indice_frame = 0
@@ -36,9 +38,6 @@ def mochila(screen):
     #Redimencionar imagem do gato xd
     mochila_gato_meme = pg.transform.scale(imagem.show_pokemons_backpack, (200, 200))
     inventario_scale = pg.transform.scale(imagem.inventario, (800, 600))
-
-    global pokemonsSetados
-    pokemonsSetados = list()
 
     #Carregar os sprites dos pokemons
     #Explicação das linhas:

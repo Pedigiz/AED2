@@ -85,7 +85,7 @@ def verificaMouse():
     global mouse_pos
     mouse_pos = pg.mouse.get_pos()
     mouse_pos_mundo = pg.Vector2(mouse_pos[0] + camera_x, mouse_pos[1] + camera_y)
-    print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
+    #print(f"Mouse na tela: {mouse_pos}, Mouse no mundo: {mouse_pos_mundo}")
 
 def exibir_popup(screen, mensagem):
     text_surface = color.fonte.render(mensagem, True, color.white)
