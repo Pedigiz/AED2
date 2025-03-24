@@ -30,6 +30,7 @@ def get_pokemon_info(id, dataframe):
         'habilidade1': habilidades[0] if len(habilidades) > 0 else None,
         'habilidade2': habilidades[1] if len(habilidades) > 1 else "Attack",
         'hp': stats_dict.get('hp', 0),
+        'hp_max': stats_dict.get('hp', 0),
         'attack': stats_dict.get('attack', 0),
         'image': pg.image.load(f"./src/art/pokemons/png_static_pokemons/{int(pokemon['id'])}.png"),
         'capturado': False
