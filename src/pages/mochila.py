@@ -2,6 +2,8 @@ import pygame as pg
 import time
 import sys
 import os
+import math
+
 
 
 
@@ -95,7 +97,7 @@ def mochila(screen):
             return 'game'  # Voltar para o jogo
         
         #-------------------------DESENHAR OS SPRITES-------------------------------------
-        if (pokemon.charizard['capturado'] == True):
+        if (pokemon.charizard['capturado'] == True):     # X e Y
             screen.blit(charizard_sprite[indice_frame], (50, 10))  #Desenhar o frame atual
         else:
             screen.blit(pokemon.charizard['image'], (50, 50))
@@ -153,7 +155,7 @@ def mochila(screen):
         # Atualizar frame
         indice_frame = (indice_frame + 1) % 46 #São 46 imagens de pokemons em cada sprite
         #---------------------------------------------------------------------------------
-        
+
         if mech.popup_text and mech.popup_timer > 0:
                 mech.exibir_popup(screen, mech.popup_text)
                 mech.popup_timer -= 1
@@ -178,3 +180,5 @@ def mochila(screen):
                     
             
     return 'menu'  # Se sair do loop, pode retornar para o menu
+
+

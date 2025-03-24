@@ -80,7 +80,7 @@ def proximoDoObjeto(x_jogador, y_jogador, x_objeto, y_objeto, raio2):
     distancia = ((x_jogador - x_objeto) ** 2 + (y_jogador - y_objeto) ** 2) ** 0.5
     return distancia <= raio2 # Só vai retornar se isso for verdade
         
-#Verificacao de Onde o mouse esta sendo clicado para poder inserir os pokemons mais facilmente
+#Verificacao de onde o mouse 
 def verificaMouse():
     global mouse_pos
     mouse_pos = pg.mouse.get_pos()

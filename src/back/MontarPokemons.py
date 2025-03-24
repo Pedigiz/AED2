@@ -37,7 +37,6 @@ def get_pokemon_info(id, dataframe):
 
 df = pd.read_csv("./src/styles/Pokedex/pokedex.csv")
 
-
 blastoise = get_pokemon_info(9, df)   #blastoise == 9
 charizard = get_pokemon_info(6, df)   #charizard == 6
 charmander = get_pokemon_info(4, df) #charmander == 4

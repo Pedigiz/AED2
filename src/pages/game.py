@@ -56,11 +56,6 @@ def game(screen):
             time.sleep(0.2)
             return 'mochila'
         
-        #Batalha
-        if keys[pg.K_p] and 'game':
-            time.sleep(0.2)
-            return 'batalha'
-        
         #Mapa_paint
         if keys[pg.K_m] and 'game':
             time.sleep(0.2)
@@ -76,6 +71,7 @@ def game(screen):
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
+
 
         # Verificar proximidade com ginásios
         for chave0, tupla in mech.valores_regioes.items():
@@ -95,6 +91,10 @@ def game(screen):
                     todasAsDistanciasGinasios = grafo.calculaDistanciasGinasios()
                     for chave, valor in todasAsDistanciasGinasios.items():
                         if chave == chave0 and jogador_proximo:
+                            #Batalha
+                            if keys[pg.K_p] and 'game':
+                                time.sleep(0.2)
+                                return 'batalha'
                             if keys[pg.K_e]:
                                 menor_valor = min(v for k, v in valor.items() if v > 0)
                                 menor_chave = [k for k, v in valor.items() if v == menor_valor]
