@@ -5,6 +5,8 @@ import os
 import math
 
 
+
+
 import src.styles.imagens as imagem
 import src.styles.color as color
 import src.back.mechanics as mech

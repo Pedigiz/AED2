@@ -122,4 +122,3 @@ def capturaPokemon(pokemon2):
 def removeBotaoPokemon(pokemon):
     if pokemon in botoes_visiveis:
         botoes_visiveis.remove(pokemon)
-        

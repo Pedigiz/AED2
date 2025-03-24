@@ -31,6 +31,8 @@ def game(screen):
     contador_fps = 0
     estado_jogador = 'parado'
 
+    #CARREGAR A ANIMAÇÃO ANTES
+    
     #Mapa
     screen.fill(color.black)
     mapa_main = pg.transform.scale(imagem.mapa, (mech.altura_mapa, mech.largura_mapa))
@@ -80,7 +82,6 @@ def game(screen):
                 mech.raio2
             )
         
-
             # Parte do algoritmo de dijktra para procurar o menor caminho
             for chave0,tupla in mech.valores_regioes.items():
                 x_ginasio, y_ginasio = tupla
@@ -120,8 +121,6 @@ def game(screen):
                                 mech.exibir_popup(screen, mech.popup_text )
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
                                 pg.time.wait(500)
-
-
 
         # Desenhar o círculo (Player)
         estado_jogador = animacaoJogador(keys)
