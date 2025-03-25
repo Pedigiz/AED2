@@ -51,7 +51,7 @@ def game(screen):
         # Movimentar jogador
         keys = pg.key.get_pressed()
         mech.movimentarJogador(keys)
-
+#as
         # Instrucoes
         if keys[pg.K_j]:
             mech.popup_text = f"Bem vindo(a) ao jogo, comece por: {grafo.ginasioinicial}, aperte M"
