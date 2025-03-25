@@ -11,12 +11,15 @@ import src.back.mechanics as mech
 import src.back.MontarPokemons as pokemon
 import src.pages.mochila as mochila
 
-#Aleatorizar pokemon adv
-poke_alea = random.randint(0, 49)
-
 def batalha(screen):
     running = True
     clock = pg.time.Clock()
+
+    #Aleatorizar pokemon adv
+    poke_alea = random.randint(0, 49)
+    pokemonAdv = pokemon.pokemon_adversarios[poke_alea]
+    #Seu pokemon
+    meuPokemon = mochila.pokemonsSetados[0]
 
     pg.display.set_caption('POKEMON FIRE/RED DEEPWEB')
 
@@ -36,20 +39,11 @@ def batalha(screen):
         if keys[pg.K_p] and 'batalha':
             time.sleep(0.1)
             return 'game'  # Voltar para o jogo
-        
-                #Checagem após os ataques
-        if ((meuPokemon['hp'] < 0  or pokemonAdv['hp'] <= 0) and 'batalha'):
-            return'game'
-        
 
         #PAINEL DE INFORMAÇOES ---------------------------
-        meuPokemon = mochila.pokemonsSetados[0]
-        pokemonAdv = pokemon.pokemon_adversarios[poke_alea]
-        
-        #Seu pokemon
         screen.blit(pg.transform.scale(meuPokemon['image'], (150, 150)), (150, 300))
 
-        Info_Batalha(screen, "HP: " + str(meuPokemon['hp']), 10, 450)
+        Info_Batalha(screen, "HP: " + str(f'{meuPokemon['hp']:.2f}'), 10, 450)
         Info_Batalha(screen, "Attack: " + str(meuPokemon['attack']), 10, 480)
         Info_Batalha(screen, "Habilidade1: " + str(meuPokemon['habilidade1']), 10, 520)
         pg.draw.rect(screen, color.white, (5, 516, 350, 30), 2)
@@ -59,7 +53,7 @@ def batalha(screen):
         #Pokemon adversario
         screen.blit(pg.transform.scale(pokemonAdv['image'], (150, 150)), (530, 300))
 
-        Info_Batalha(screen, "HP: " + str(pokemonAdv['hp']), 670, 450)
+        Info_Batalha(screen, "HP: " + str(f'{pokemonAdv['hp']:.2f}'), 670, 450)
         Info_Batalha(screen, "Attack: " + str(pokemonAdv['attack']), 670, 480)
         Info_Batalha(screen, "Habilidade1: " + str(pokemonAdv['habilidade1']), 450, 520)
         pg.draw.rect(screen, color.white, (445, 516, 350, 30), 2)
@@ -75,19 +69,35 @@ def batalha(screen):
 
             pg.time.wait(1000)
 
+            #Checar vida
+            if (testeVida(meuPokemon, pokemonAdv, screen)):
+                return 'game'
+
             #Pokemon adversarioataca
             habAdv = random.randint(1, 2)
             atacar(pokemonAdv, meuPokemon, screen, habAdv)
+
+            #Checar vida
+            if (testeVida(meuPokemon, pokemonAdv, screen)):
+                return 'game'
             
         if keys[pg.K_2] and 'batalha':
             time.sleep(0.1)
             atacar(meuPokemon, pokemonAdv, screen, 2)
+
+            #Checar vida
+            if (testeVida(meuPokemon, pokemonAdv, screen)):
+                return 'game'
 
             time.sleep(1)
 
             #Pokemon adversarioataca
             habAdv = random.randint(1, 2)
             atacar(pokemonAdv, meuPokemon, screen, habAdv)
+
+            #Checar vida
+            if (testeVida(meuPokemon, pokemonAdv, screen)):
+                return 'game'
 
         #--------------------------------------------------------------------------------
 
@@ -97,6 +107,8 @@ def batalha(screen):
 
 
     return 'menu'  # Se sair do loop, pode retornar para o menu
+
+
 
 def Info_Batalha(screen, mensagem, x, y):
     text_surface = color.fonte.render(mensagem, True, color.white)
@@ -128,3 +140,23 @@ def timerpopup(screen):
             mech.popup_timer -= 1
 
             pg.display.flip()  # Atualizar tela
+
+
+def testeVida(meuPokemon, pokemonAdv, screen):
+    if ((meuPokemon['hp'] <= 0) and 'batalha'):
+        mech.popup_text = "Você perdeu a batalha!"
+        mech.exibir_popup(screen, mech.popup_text)
+        mech.popup_timer = 2000
+        timerpopup(screen)
+
+        return True
+    
+    elif (pokemonAdv['hp'] <= 0):
+        mech.popup_text = "Você ganhou a batalha!"
+        mech.exibir_popup(screen, mech.popup_text)
+        mech.popup_timer = 2000
+        timerpopup(screen)
+
+        return True
+    
+    return False
