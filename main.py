@@ -24,7 +24,7 @@ def main():
     }
 
     while True:
-        print(f'Executando cena: {cena_atual}')
+        #print(f'Executando cena: {cena_atual}')
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -40,7 +40,7 @@ def main():
         if cena_atual in cenas:
             cena_atual = cenas[cena_atual](screen)
         else:
-            print(f"Cena inválida: {cena_atual}")
+            #print(f"Cena inválida: {cena_atual}")
             break
 
 #if __name__ == "_main_":

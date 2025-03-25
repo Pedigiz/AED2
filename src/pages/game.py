@@ -7,6 +7,7 @@ import src.styles.color as color
 import src.back.mechanics as mech
 import src.back.grafo as grafo
 import src.back.MontarPokemons as pokemon
+import src.pages.mochila as mochila
 
 
 #Inicializar
@@ -93,25 +94,30 @@ def game(screen):
                     for chave, valor in todasAsDistanciasGinasios.items():
                         if chave == chave0 and jogador_proximo:
                             #Batalha
-                            if (keys[pg.K_p] and chave == grafo.ginasioinicial and grafo.verificadorGinasioInicial == False):
+                            if (keys[pg.K_p] and chave == grafo.ginasioinicial and grafo.verificadorGinasioInicial == False and len(mochila.pokemonsSetados) != 0 ):
                                 grafo.verificadorGinasioInicial = True
-                                grafo.ContadorGinasios(1) # FUNCIONOUUUU 40 MINUTOS PRA FAZER UM CONTADOR
                                 time.sleep(0.2)
-                                return 'batalha'
+                                return 'batalha' 
                                     
-                            if (keys[pg.K_p] and chave == grafo.ginasiofinal and grafo.contadorGinasios == 4):
-                                print (grafo.contadorGinasios)
+                            if (keys[pg.K_p] and chave == grafo.ginasiofinal and grafo.contadorGinasios == 4 and len(mochila.pokemonsSetados) != 0):
                                 time.sleep(0.2)
                                 return 'batalha'
 
-                            if (keys[pg.K_p] and grafo.verificadorGinasioInicial == True and grafo.contadorGinasios < 4 and chave != grafo.ginasiofinal):
-                                grafo.ContadorGinasios(1) # FUNCIONOUUUU 40 MINUTOS PRA FAZER UM CONTADOR
+                            if (keys[pg.K_p] and grafo.verificadorGinasioInicial == True and grafo.contadorGinasios < 4 and chave != grafo.ginasiofinal and len(mochila.pokemonsSetados) != 0):
                                 time.sleep(0.2)
                                 return 'batalha'
                             
                             if keys[pg.K_e]:
-                                menor_valor = min(v for k, v in valor.items() if v > 0)
-                                menor_chave = [k for k, v in valor.items() if v == menor_valor]
+                                menor_valor = float('inf')  # Inicializa com um valor muito alto
+                                for chave_atual, valor_atual in valor.items(): # Valor tem as keys do dicionario
+                                    if valor_atual > 0 and valor_atual < menor_valor:
+                                        menor_valor = valor_atual
+
+                                menor_chave = []
+                                for chave_atual, valor_atual in valor.items(): # Valor tem as keys do dicionario
+                                    if valor_atual == menor_valor:
+                                        menor_chave.append(chave_atual)
+                                
                                 mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
                                 mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
 

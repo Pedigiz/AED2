@@ -5,6 +5,8 @@ import pygame as pg
 import pandas as pd
 import random
 
+import src.back.grafo as grafo
+
 def get_pokemon_info(id, dataframe):
     pokemon = dataframe[dataframe['id'] == id]
 
@@ -50,6 +52,11 @@ pikachu = get_pokemon_info(25, df)       #pikachu == 25
 rayquaza = get_pokemon_info(384, df)     #rayquaza == 384
 venusaur = get_pokemon_info(3, df)     #venusaur == 3
 
-pokemons_ids = [random.randint(1, 499) for i in range(50)]
+pokemons_ids = [random.randint(1, 499) for i in range(100)]
 
 pokemon_adversarios = [get_pokemon_info(poke_id, df) for poke_id in pokemons_ids]
+
+meu_pokemon_inicial = globals().get(grafo.pokemoninicial.lower())
+
+if meu_pokemon_inicial:
+    meu_pokemon_inicial['capturado'] = True

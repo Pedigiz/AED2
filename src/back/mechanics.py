@@ -26,7 +26,7 @@ camera_centro = pg.Vector2( (altura/2) , (largura/2) )
 
 #Config do player (bola)
 raio = 10
-speed = 10
+speed = 7
 x_player, y_player = 0, 0
 
 #Posição inicial do circulo

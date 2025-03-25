@@ -7,6 +7,7 @@ listaGinasios = ["alola","kanto","johto", "hoenn", "sinnoh"]
 global verificadorGinasioInicial
 verificadorGinasioInicial = False
 contadorGinasios = 0
+listaGinasiosVisitados = list ()
 
 # Leitura dos arquivos
 def lerArquivo():
@@ -43,10 +44,9 @@ def lerArquivo():
         grafo[c1][c2] = peso
         grafo[c2][c1] = peso
     
-    #print(grafo)
     
 lerArquivo()
-print (ginasiofinal)
+
 #Definimos a função dijkstra que implementa o algoritmo de Dijkstra. Essa função recebe o grafo e o vértice de origem como parâmetros.
 def calcular_dijkstra(grafo, origem):
 
@@ -86,8 +86,9 @@ def calculaDistanciasGinasios(): # Esta me retornando um dicionario
     resultados [ginasios] = calcular_dijkstra(grafo,ginasios)
   return resultados
 
+
 def ContadorGinasios(contador):
     global contadorGinasios
+    #global listaGinasiosVisitados
     contadorGinasios = contadorGinasios + contador
-    print(contadorGinasios)
     return contadorGinasios

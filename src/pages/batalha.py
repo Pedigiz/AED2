@@ -10,16 +10,22 @@ import src.styles.color as color
 import src.back.mechanics as mech
 import src.back.MontarPokemons as pokemon
 import src.pages.mochila as mochila
+import src.pages.game as game
+import src.back.grafo as grafo
+
+#Contador para pegar o próximo pokemon quando um morrer
+cont = 0
 
 def batalha(screen):
     running = True
     clock = pg.time.Clock()
 
+    #Contador para pegar o próximo pokemon quando um morrer
+    global cont
+
     #Aleatorizar pokemon adv
     poke_alea = random.randint(0, 49)
     pokemonAdv = pokemon.pokemon_adversarios[poke_alea]
-    #Seu pokemon
-    meuPokemon = mochila.pokemonsSetados[0]
 
     pg.display.set_caption('POKEMON FIRE/RED DEEPWEB')
 
@@ -27,6 +33,9 @@ def batalha(screen):
     arena_scale = pg.transform.scale(imagem.arena, (800, 600))
 
     while running:
+        #Seu pokemon
+        meuPokemon = mochila.pokemonsSetados[cont]
+
         screen.fill(color.black)  # Pintar fundo de preto
         screen.blit(arena_scale, (0,-50))
         pg.draw.rect(screen, color.black, (0, 450, 800, 200))
@@ -71,6 +80,7 @@ def batalha(screen):
 
             #Checar vida
             if (testeVida(meuPokemon, pokemonAdv, screen)):
+                regenerarVidas()
                 return 'game'
 
             #Pokemon adversarioataca
@@ -79,6 +89,7 @@ def batalha(screen):
 
             #Checar vida
             if (testeVida(meuPokemon, pokemonAdv, screen)):
+                regenerarVidas()
                 return 'game'
             
         if keys[pg.K_2] and 'batalha':
@@ -87,6 +98,7 @@ def batalha(screen):
 
             #Checar vida
             if (testeVida(meuPokemon, pokemonAdv, screen)):
+                regenerarVidas()
                 return 'game'
 
             time.sleep(1)
@@ -97,6 +109,7 @@ def batalha(screen):
 
             #Checar vida
             if (testeVida(meuPokemon, pokemonAdv, screen)):
+                regenerarVidas()
                 return 'game'
 
         #--------------------------------------------------------------------------------
@@ -143,7 +156,16 @@ def timerpopup(screen):
 
 
 def testeVida(meuPokemon, pokemonAdv, screen):
+    global cont
     if ((meuPokemon['hp'] <= 0) and 'batalha'):
+        #Pegar prox pokemon se tiver
+        if (len(mochila.pokemonsSetados) > 2 and cont == 1):
+            cont +=1
+            return False
+        if (len(mochila.pokemonsSetados) > 1 and cont == 0):
+            cont +=1
+            return False
+
         mech.popup_text = "Você perdeu a batalha!"
         mech.exibir_popup(screen, mech.popup_text)
         mech.popup_timer = 2000
@@ -152,6 +174,8 @@ def testeVida(meuPokemon, pokemonAdv, screen):
         return True
     
     elif (pokemonAdv['hp'] <= 0):
+        #Soma 1 no contador ginasio, pois aqui você ganhou a batalha
+        grafo.ContadorGinasios(1) # FUNCIONOUUUU 40 MINUTOS PRA FAZER UM CONTADOR
         mech.popup_text = "Você ganhou a batalha!"
         mech.exibir_popup(screen, mech.popup_text)
         mech.popup_timer = 2000
@@ -160,3 +184,7 @@ def testeVida(meuPokemon, pokemonAdv, screen):
         return True
     
     return False
+
+def regenerarVidas():
+    for pokemon in mochila.pokemonsSetados:
+        pokemon['hp'] = pokemon['hp_max']
