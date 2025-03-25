@@ -8,6 +8,7 @@ import src.back.mechanics as mech
 import src.back.grafo as grafo
 import src.back.MontarPokemons as pokemon
 
+
 #Inicializar
 #Config básicas do pygame
 def game(screen):
@@ -38,7 +39,7 @@ def game(screen):
 
     #Loop infinito
     while running:
-
+        
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return 'sair'
@@ -50,7 +51,7 @@ def game(screen):
         # Movimentar jogador
         keys = pg.key.get_pressed()
         mech.movimentarJogador(keys)
-
+#as
         # Instrucoes
         if keys[pg.K_j]:
             mech.popup_text = f"Bem vindo(a) ao jogo, comece por: {grafo.ginasioinicial}, aperte M"
@@ -76,7 +77,7 @@ def game(screen):
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
-
+        
         # Verificar proximidade com ginásios
         for chave, tupla in mech.valores_regioes.items():
             x_ginasio, y_ginasio = tupla
