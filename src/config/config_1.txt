@@ -17,4 +17,6 @@ pikachu
 [sinnoh] 4 [kanto]
 [sinnoh] 7 [hoenn]
 
+[hoenn]
+
 charizard

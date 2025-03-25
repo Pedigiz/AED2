@@ -1,7 +1,12 @@
 #Importamos o módulo sys para utilizar o valor de infinito (sys.maxsize) na inicialização das distâncias
 import sys
+import time
+
 
 listaGinasios = ["alola","kanto","johto", "hoenn", "sinnoh"]
+global verificadorGinasioInicial
+verificadorGinasioInicial = False
+contadorGinasios = 0
 
 # Leitura dos arquivos
 def lerArquivo():
@@ -9,7 +14,8 @@ def lerArquivo():
   global ginasioinicial
   global pokemoninicial
   global pokemonfinal
-  global grafo
+  global ginasiofinal
+
   grafo = dict()
   listapokemon = list()
   with open ('./src/config/config_1.txt', 'r') as arquivo: # Abrir os arquivos
@@ -17,6 +23,7 @@ def lerArquivo():
     
     ginasioinicial = conteudo[0]
     pokemoninicial = conteudo[2]
+    ginasiofinal =  conteudo[19]
     pokemonfinal = conteudo[-1]
 
     for linha in conteudo[3: -1]:
@@ -32,14 +39,14 @@ def lerArquivo():
         if c2 not in grafo:
           grafo[c2] = {}
 
-        # Adicionando conexão bidirecional
+        # Para o grafo ser bidirecional
         grafo[c1][c2] = peso
         grafo[c2][c1] = peso
     
     #print(grafo)
     
 lerArquivo()
-
+print (ginasiofinal)
 #Definimos a função dijkstra que implementa o algoritmo de Dijkstra. Essa função recebe o grafo e o vértice de origem como parâmetros.
 def calcular_dijkstra(grafo, origem):
 
@@ -78,3 +85,9 @@ def calculaDistanciasGinasios(): # Esta me retornando um dicionario
   for ginasios in listaGinasios:
     resultados [ginasios] = calcular_dijkstra(grafo,ginasios)
   return resultados
+
+def ContadorGinasios(contador):
+    global contadorGinasios
+    contadorGinasios = contadorGinasios + contador
+    print(contadorGinasios)
+    return contadorGinasios
