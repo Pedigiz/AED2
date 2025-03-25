@@ -26,6 +26,7 @@ def game(screen):
     'direita': imagem.walkRightDown,
     'parado': imagem.idle
     }
+    contadorGinasios = 0
     indice = 0
     fps_delay = 10
     contador_fps = 0
@@ -37,6 +38,7 @@ def game(screen):
 
     #Loop infinito
     while running:
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 return 'sair'
@@ -48,6 +50,11 @@ def game(screen):
         # Movimentar jogador
         keys = pg.key.get_pressed()
         mech.movimentarJogador(keys)
+
+        # Instrucoes
+        if keys[pg.K_j]:
+            mech.popup_text = f"Bem vindo(a) ao jogo, comece por: {grafo.ginasioinicial}, aperte M"
+            mech.popup_timer = 120
 
         # Mochila
         if keys[pg.K_i]:
@@ -75,7 +82,6 @@ def game(screen):
             x_ginasio, y_ginasio = tupla
             jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio + mech.raio2) // 2), ((y_ginasio + mech.raio2) // 2), mech.raio2)
         
-
             # Parte do algoritmo de dijktra para procurar o menor caminho
             for chave0,tupla in mech.valores_regioes.items():
                 x_ginasio, y_ginasio = tupla
@@ -86,7 +92,19 @@ def game(screen):
                     for chave, valor in todasAsDistanciasGinasios.items():
                         if chave == chave0 and jogador_proximo:
                             #Batalha
-                            if keys[pg.K_p] and 'game':
+                            if (keys[pg.K_p] and chave == grafo.ginasioinicial and grafo.verificadorGinasioInicial == False):
+                                grafo.verificadorGinasioInicial = True
+                                grafo.ContadorGinasios(1) # FUNCIONOUUUU 40 MINUTOS PRA FAZER UM CONTADOR
+                                time.sleep(0.2)
+                                return 'batalha'
+                                    
+                            if (keys[pg.K_p] and chave == grafo.ginasiofinal and grafo.contadorGinasios == 4):
+                                print (grafo.contadorGinasios)
+                                time.sleep(0.2)
+                                return 'batalha'
+
+                            if (keys[pg.K_p] and grafo.verificadorGinasioInicial == True and grafo.contadorGinasios < 4 and chave != grafo.ginasiofinal):
+                                grafo.ContadorGinasios(1) # FUNCIONOUUUU 40 MINUTOS PRA FAZER UM CONTADOR
                                 time.sleep(0.2)
                                 return 'batalha'
                             
@@ -127,24 +145,6 @@ def game(screen):
         if (contador_fps >= fps_delay):
             indice = (indice + 1) % len(imagem.idle) #8 frames
             contador_fps = 0       
-
-
-
-
-
-        for chave,tupla in mech.valores_regioes.items():
-            x_ginasio, y_ginasio = tupla
-            jogador_proximo = mech.proximoDoObjeto(((mech.x_player + mech.raio) // 2), ((mech.y_player + mech.raio) // 2), ((x_ginasio+mech.raio2)//2), ((y_ginasio+mech.raio2)//2 ), mech.raio2)
-
-            if jogador_proximo:
-                todasAsDistanciasGinasios = grafo.calculaDistanciasGinasios()
-                for chave, valor in todasAsDistanciasGinasios.items():
-                    if chave == chave0 and jogador_proximo:
-                        if keys[pg.K_e]:
-                            menor_valor = min(v for k, v in valor.items() if v > 0)
-                            menor_chave = [k for k, v in valor.items() if v == menor_valor]
-                            mech.popup_text = f"De {chave} -> Para {menor_chave} Valor: {menor_valor}"
-                            mech.popup_timer = 120  # Duração do popup em frames (~2 segundos)
 
         # Exibir popup se necessário
         if mech.popup_text and mech.popup_timer > 0:
